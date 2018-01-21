@@ -27,8 +27,7 @@ def main():
 
     def drawArena():
         displaysurf.fill(black)
-        pygame.draw.line(displaysurf,white,((window_width/2),0),\
-                         ((window_width/2),window_height),(linethickness/4))
+        pygame.draw.line(displaysurf,white,((window_width/2),0),((window_width/2),window_height),(linethickness/4))
 
 
     def drawPaddle(paddle):
@@ -63,11 +62,12 @@ def main():
     
 
     def checkedgecoll(ball,ballDirX,ballDirY):
-        if ball.top==(linethickness) or ball.bottom==(window_height-linethickness):
-            ballDirY=ballDirY * -1
-            
+
         if ball.left==(linethickness) or ball.right==(window_width-linethickness):
             ballDirX=ballDirX * -1
+            
+        if ball.top==(linethickness) or ball.bottom==(window_height-linethickness):
+            ballDirY=ballDirY * -1
             
         return ballDirX,ballDirY
 
@@ -78,6 +78,7 @@ def main():
         
         elif ballDirX == 1 and paddle2.left == ball.right and paddle2.top < ball.top and paddle2.bottom > ball.bottom:
             return -1
+        
         else:
             return 1
 
@@ -88,8 +89,7 @@ def main():
             return 0
         
         #1 point for hitting the ball
-        elif ballDirX == -1 and paddle1.right == ball.left and paddle1.top \
-             < ball.top and paddle1.bottom > ball.bottom:
+        elif ballDirX == -1 and paddle1.right == ball.left and paddle1.top < ball.top and paddle1.bottom > ball.bottom:
             score += 1
             return score
         
@@ -132,9 +132,7 @@ def main():
     pygame.display.set_caption('Pong')
 
 
-    #initiate variable and set starting positions
-    #any future changes made within rectangles
-    #these put them in the centre
+    #initiate variable and set starting positions in the centre
     ball_X = window_width/2 - linethickness/2
     ball_Y = window_height/2 - linethickness/2
     p_one_pos = (window_height - paddlesize)/2
@@ -142,14 +140,15 @@ def main():
     score=1
 
 
-    ballDirX = -1 ## -1 = left  and 1 = right
-    ballDirY = -1 ## -1 = up  and  1 = down
+    ## -1 = left  and 1 = right
+    ## -1 = up  and  1 = down
+    ballDirX = -1  
+    ballDirY = -1  
 
 
     #(x coordinate,y coordinate, width, length)
     paddle1 =  pygame.Rect(paddledistance,p_one_pos,linethickness,paddlesize)
-    paddle2 = pygame.Rect(window_width - paddledistance - linethickness, p_two_pos,\
-                          linethickness,paddlesize)
+    paddle2 = pygame.Rect(window_width - paddledistance - linethickness, p_two_pos,linethickness,paddlesize)
     ball = pygame.Rect(ball_X, ball_Y, linethickness, linethickness)
 
 
