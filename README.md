@@ -1,2 +1,2 @@
 # Pong
-source code for a simple game called "Pong" using Python as the compiler.
+Source code for a game called "Pong". (Python 2.7 and Pygame is required for this to run)
